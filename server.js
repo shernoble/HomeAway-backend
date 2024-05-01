@@ -61,7 +61,7 @@ const options={
         },
         servers: [
             {
-                url: "http://localhost:5050",
+                url: "https://homeaway-backend.onrender.com",
             }
         ],
     },

@@ -663,8 +663,8 @@ exports.guestCheckoutSession = async(req,res) => {
             payment_method_types:["card"],
             line_items:lineItems,
             mode:"payment",
-            success_url:"http://localhost:3000/guest/success",
-            cancel_url:"http://localhost:3000/guest/fail",
+            success_url:"https://home-away-frontend-a2kv.vercel.app/guest/success",
+            cancel_url:"https://home-away-frontend-a2kv.vercel.app/guest/fail",
         });
 
         res.json({id:session.id})
