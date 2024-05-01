@@ -5,7 +5,7 @@ const session=require("express-session");
 exports.firstPage=async(req,res) => {
     try{
         // add 3 way choice here
-        res.render('firstPageUser');
+        res.send('firstPageUser');
     }
     catch(err){
         console.log(err);
