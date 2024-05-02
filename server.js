@@ -10,8 +10,8 @@ const adminroutes=require("./routes/adminRoutes");
 const guestroutes=require("./routes/guestRoutes");
 const hostroutes=require("./routes/hostRoutes");
 
-const swaggerUI = require('swagger-ui-express');
-const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc')
 
 require('dotenv').config();
 
@@ -51,25 +51,27 @@ app.use((err, req, res, next) => {
 });
 
 // app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-const options={
-    definition: {
-        openapi:"3.0.0",
-        info: {
-            title: "HomeAway API",
-            version: "1.0.0",
-            description: "HomeAway API documentation"
-        },
-        servers: [
-            {
-                url: "https://homeaway-backend.onrender.com",
-            }
-        ],
+const swaggerOptions = {
+    swaggerDefinition: {
+      openapi:"3.0.0",
+      info: {
+        title: 'Home-Away API Documentation',
+        description: 'API documentation for home-away application',
+        version: '1.0.0',
+      },
+      servers: [
+        {
+          url: `http://localhost:${PORT}/host`,
+          description: "Local server",
+  },
+ ],
     },
-    apis: ["./routes/*.js","./server.js"],
-};
-
-const swaggerSpec = swaggerJSDoc(options);
-app.use("/api-docs",swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+    apis: ['./routes/*.js'],
+    
+  };
+  
+  const swaggerDocs = swaggerJsdoc(swaggerOptions);
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // start the Express server
 app.listen(PORT, () => {
