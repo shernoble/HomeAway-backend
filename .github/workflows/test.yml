@@ -16,7 +16,6 @@ jobs:
           node-version: 16.x
       - name: Install dependencies
         run: |
-          cd backend
           npm install
       - name: Run tests
         run: |
