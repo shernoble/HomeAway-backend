@@ -19,7 +19,6 @@ jobs:
           npm install
       - name: Run tests
         run: |
-          cd backend
           npm test
     
   build-and-deploy:
