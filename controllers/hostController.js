@@ -571,59 +571,58 @@ exports.saveListing = async (req, res) => {
     }
 };
 
+exports.hostEditPass=async(req,res) => {
+    try{
+       // get the user,new pass
+       const oldpass=req.body.oldPassword;
+       const newpass=req.body.newPassword;
+       console.log("newpass:"+newpass);
+       const userid=req.body.id;
+       console.log(userid);
+       Host.findById(userid)
+       .then(function(result){
+           // check the 
+           bcrypt.compare(oldpass,result.password,function(err,result){
+                   
+               if(result){
+                   bcrypt.hash(newpass, saltRounds, async (err, hash) => {
+                       if (err) {
+                           return res.status(500).send({ success:false,message: 'Error hashing password' });
+                       }
+           
+                       try {
+                           // Find the guest user by ID and update the password
+                           const updatedUser = await Host.findByIdAndUpdate(
+                               userid,
+                               { password: hash },
+                               { new: true } // Return the updated document
+                           );
+                           if (!updatedUser) {
+                               return res.status(404).send({ success:false,message: 'User not found' });
+                           }
+                           console.log("pass updated");
+                           return res.status(200).send({success:true, message: 'Password updated successfully' });
+                       } catch (error) {
+                           return res.status(500).send({success:false, message: 'Error updating password' });
+                       }
+                   });
+               }
+               else{
+                   return res.status(200).json({ success: false,message:'incorrect password' });
+               }
+               
+           })
+       })
+       .catch(function(err){
+           return res.json({err:err});
+       })
 
- exports.hostEditPass=async(req,res) => {
-     try{
-        // get the user,new pass
-        const oldpass=req.body.oldPassword;
-        const newpass=req.body.newPassword;
-        console.log("newpass:"+newpass);
-        const userid=req.body.id;
-        console.log(userid);
-        Host.findById(userid)
-        .then(function(result){
-            // check the 
-            bcrypt.compare(oldpass,result.password,function(err,result){
-                    
-                if(result){
-                    bcrypt.hash(newpass, saltRounds, async (err, hash) => {
-                        if (err) {
-                            return res.status(500).send({ success:false,message: 'Error hashing password' });
-                        }
-            
-                        try {
-                            // Find the guest user by ID and update the password
-                            const updatedUser = await Host.findByIdAndUpdate(
-                                userid,
-                                { password: hash },
-                                { new: true } // Return the updated document
-                            );
-                            if (!updatedUser) {
-                                return res.status(404).send({ success:false,message: 'User not found' });
-                            }
-                            console.log("pass updated");
-                            return res.status(200).send({success:true, message: 'Password updated successfully' });
-                        } catch (error) {
-                            return res.status(500).send({success:false, message: 'Error updating password' });
-                        }
-                    });
-                }
-                else{
-                    return res.status(200).json({ success: false,message:'incorrect password' });
-                }
-                
-            })
-        })
-        .catch(function(err){
-            return res.json({err:err});
-        })
-
-    }
-    catch(err){
-        return res.status(500).send({message:err.message || "Error Occured"});
-    }
+   }
+   catch(err){
+       return res.status(500).send({message:err.message || "Error Occured"});
+   }
 }
-  
+ 
 
 
   exports.getUserListings = async (req, res) => {

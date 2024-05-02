@@ -165,7 +165,7 @@ const hostController=require("../controllers/hostController");
  *       '500':
  *         description: Server error. Failed to save the listing.
  */
-router.get("/congo", hostController.saveListing);
+router.post("/congo", hostController.saveListing);
 
 /**
  * @swagger
