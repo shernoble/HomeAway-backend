@@ -61,7 +61,7 @@ const swaggerOptions = {
       },
       servers: [
         {
-          url: `http://localhost:${PORT}/host`,
+          url: `https://homeaway-backend.onrender.com/host`,
           description: "Local server",
   },
  ],
