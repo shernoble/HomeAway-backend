@@ -1,8 +1,8 @@
 const { Redis } = require('@upstash/redis')
 
 const redisClient = new Redis({
-    url: 'https://caring-ram-34217.upstash.io',
-    token: 'AYWpAAIncDFjMjA5ZGUxOGYwNTU0YzAwYTIwOTY0OTFiMDM2NmRlMHAxMzQyMTc',
+    url: 'https://complete-yak-34129.upstash.io',
+    token: 'AYVRAAIjcDEzYTYyYzNhYzlmMGM0NjYyODU3MDg5MWMzNTZkNGVhM3AxMA',
+    
   })
-
   module.exports = redisClient;
