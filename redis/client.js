@@ -1,8 +1,8 @@
 const { Redis } = require('@upstash/redis')
 
 const redisClient = new Redis({
-    url: 'https://complete-yak-34129.upstash.io',
-    token: 'AYVRAAIjcDEzYTYyYzNhYzlmMGM0NjYyODU3MDg5MWMzNTZkNGVhM3AxMA',
+  url: 'https://renewing-dodo-55887.upstash.io',
+  token: 'AdpPAAIjcDEwMTljYWIyNTI3NDA0YWQyYjQ0MjFhYTg3Yzg4M2UzMHAxMA',
     
   })
   module.exports = redisClient;
